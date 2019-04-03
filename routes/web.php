@@ -25,7 +25,7 @@ Route::post('/profile','UserController@update_profile');
 Route::get('/employee','EmployeeController@index');
 Route::post('/emp','EmployeeController@store');
 Route::get('emp/{id}','EmployeeController@show');
-Route::post('emp-update','EmployeeController@update');
+Route::post('/emp-update','EmployeeController@update');
 Route::get('emp-delete/{id}','EmployeeController@destroy');
 
 Route::get('form',function(){
