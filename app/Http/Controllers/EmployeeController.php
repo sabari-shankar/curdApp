@@ -17,7 +17,7 @@ class EmployeeController extends Controller
     {
         $emp['employees']=Employee::all();
         return view('employee',$emp);
-          
+
     }
 
     /**
@@ -38,8 +38,10 @@ class EmployeeController extends Controller
      */
     public function store(Request $request,Employee $emp)
     {
-
-         
+        //$mes=['numeric'=>':attribute must be an mobile'];
+         $validate=$request->validate(['name'=>'required',
+                                        'mobile'=>'required|numeric',
+                                        'email'=>'required|unique:employees']);
         $emp->name=$request->name;
         $emp->mobile=$request->mobile;
         $emp->email=$request->email;
@@ -72,7 +74,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        
+
     }
 
     /**
@@ -84,16 +86,20 @@ class EmployeeController extends Controller
      */
     public function update(Request $request)
     {
+        $validate=$request->validate(['name'=>'required',
+                                        'mobile'=>'required|numeric',
+                                        'email'=>'required']);
         $emp=Employee::find($request->id);
         $emp->name=$request->name;
         $emp->mobile=$request->mobile;
         $emp->email=$request->email;
         if($emp->save()){
-            return redirect()->back();
+            $request->session()->flash('alert-success','Record Updated');
+            return redirect('/employee');
             echo "Updated";
         }else{
             echo"Not Updated";
-        }   
+        }
     }
 
     /**
@@ -107,6 +113,7 @@ class EmployeeController extends Controller
         $emp=Employee::find($id);
 
         if($emp->delete()){
+
             return redirect()->back();
             echo"Deleted";
         }else{
