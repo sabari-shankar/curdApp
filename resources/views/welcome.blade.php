@@ -1,4 +1,9 @@
-<!doctype html>
+@desktop 
+    <h1>Desktop view</h1>
+@elsedesktop
+    <h1>Mobile view</h1>
+@enddesktop
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">

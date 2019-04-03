@@ -32,18 +32,35 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label>NAME</label>
-						<input type="text" placeholder="Enter Name" name="name" class="form-control" id="name">
+                    <input type="text" placeholder="Enter Name" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ old('name') }}">
+                    @if($errors->has('name'))
+                                    <span class="alert alert-danger invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+
 					</div>
 					<div class="form-group">
 						<label>MOBILE</label>
-						<input type="text" placeholder="Enter Mobile Number" name="mobile" class="form-control" id="mobile">
-					</div>
+                        <input type="text" placeholder="Enter Mobile Number" name="mobile" class="form-control {{ $errors->has('mobile') ? ' is-invalid' : '' }}" id="mobile" value="{{ old('mobile') }}">
+                                            </div>
+                                            @if ($errors->has('mobile'))
+                                    <span class="alert alert-danger invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('mobile') }}</strong>
+                                    </span>
+                                @endif
 					<div class="form-group">
 						<label>EMAIL-ID</label>
-						<input type="email" placeholder="Enter EMAIL-ID" id="email" name="email" class="form-control">
+                        <input type="email" placeholder="Enter EMAIL-ID" id="email" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}">
+                        @if ($errors->has('email'))
+                                    <span class="alert alert-danger invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+
 					</div>
-							
-				
+
+
 				</div>
 			</div>
 			<div class="row">
@@ -53,7 +70,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 </form>
 		<div class="container">
 					<table class="table table-responsive" >
@@ -75,8 +92,8 @@
 							@endforeach
 						</tbody>
 					</table>
-				</div>	
-	
+				</div>
+
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

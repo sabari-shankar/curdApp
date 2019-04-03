@@ -18,18 +18,32 @@
 					<div class="form-group">
 						<label>NAME</label>
 						<input type="hidden" name='id' value="{{$employees['id']}}">
-						<input type="text" placeholder="Enter Name" name="name" value="{{$employees['name']}}" class="form-control" id="name">
-					</div>
+                    <input type="text"  name="name" value="{{$employees['name']}}" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="name">
+                    </div>
+                    @if($errors->has('name'))
+                    <span class="alert alert-danger" role="alert">
+                        <strong>{{$errors->first('name')}}</strong>
+                    </span>
+                    @endif
 					<div class="form-group">
 						<label>MOBILE</label>
-						<input type="text" placeholder="Enter Mobile Number" name="mobile" class="form-control" id="mobile" value="{{$employees['mobile']}}" >
-					</div>
+                    <input type="text"  name="mobile" class="form-control {{$errors->has('mobile') ? 'is-invalid':''}}" id="mobile" value="{{$employees['mobile']}}" >
+                    </div>
+                    @if($errors->has('mobile'))
+                    <span class="alert alert-danger" role="alert">
+                        <strong>{{$errors->first('mobile')}}</strong>
+                    </span>
+                    @endif
 					<div class="form-group">
 						<label>EMAIL-ID</label>
-						<input type="email" placeholder="Enter EMAIL-ID" id="email" name="email" class="form-control" value="{{$employees['email']}}" >
+                    <input type="email" id="email" name="email" class="form-control {{$errors->has('email') ? 'is-invalid' :''}}" value="{{$employees['email']}}" >
 					</div>
-							
-				
+                    @if($errors->has('email'))
+                    <span class="alert alert-danger" role="alertdialog">
+                        <strong>{{$errors->first('email')}}</strong>
+                    </span>
+                    @endif
+
 				</div>
 			</div>
 			<div class="row">
@@ -39,5 +53,5 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 </form>
